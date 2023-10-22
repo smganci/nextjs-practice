@@ -4,9 +4,10 @@ import utilStyles from '../styles/utils.module.css';
 import { getSortedPostsData } from '../lib/posts';
 import Link from 'next/link';
 import Date from '../components/date';
+import {GetStaticProps} from 'next';
 //get static props allows us to make a static call to get our data and return that as part of props in the return object
 // when a page includes an export of getStaticProps, then it automatically knows to render and save at build time and build using the rpops resulting from getStaticProps
-export async function getStaticProps() {
+export const getStaticProps : GetStaticProps= async (context)=> {
   const allPostsData = getSortedPostsData();
   // the result of getStaticProps .props is passed into the functions on the same page?
   return {
@@ -14,7 +15,7 @@ export async function getStaticProps() {
       allPostsData,
     },
   };
-}
+}; 
 export default function Home({allPostsData}) {
   return (
     <Layout home>
